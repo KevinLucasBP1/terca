@@ -5,6 +5,8 @@ const pessoas = JSON.parse(pessoasString);
 
 pessoas.sort((a, b) => a.nome.localeCompare(b.nome));
 
+
+
 const nomes = pessoas.map(pessoa => pessoa.nome);
 const idades = pessoas.map(pessoa => pessoa.idade);
 
@@ -13,13 +15,15 @@ const menorIdade = Math.min(...idades);
 const mediaIdades = idades.reduce((soma, idade) => soma + idade, 0) / idades.length;
 const medianaIdades = calcularMediana(idades);
 
+
+
 resultado.innerHTML = `
     <h2>Resultados:</h2>
     <ul>
-        <li>Nomes em ordem alfabética: ${nomes.join(', ')}</li>
+        <li>Nomes em ordem alfabética: ${nomes.join(' , ')}</li>
+        <li>idades dos registros: ${idades.join(', ')}</li>
         <li>Maior idade: ${maiorIdade}</li>
         <li>Menor idade: ${menorIdade}</li>
-        <li>Média das idades: ${mediaIdades.toFixed(2)}</li>
         <li>Mediana das idades: ${medianaIdades}</li>
     </ul>
 `;
