@@ -21,9 +21,13 @@ resultado.innerHTML = `
     <h2>Resultados:</h2>
     <ul>
         <li>Nomes em ordem alfabética: ${nomes.join(' , ')}</li>
+        <br>
         <li>idades dos registros: ${idades.join(', ')}</li>
+        <br>
         <li>Maior idade: ${maiorIdade}</li>
+        <br>
         <li>Menor idade: ${menorIdade}</li>
+        <br>
         <li>Mediana das idades: ${medianaIdades}</li>
     </ul>
 `;
