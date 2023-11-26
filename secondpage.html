@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Resultado</title>
+    <script>
+        var nameCount = sessionStorage.length / 2;
+        var names = [];
+        var ages = [];
+        for (var i = 0; i < nameCount; i++) {
+            names[i] = sessionStorage.getItem('name' + i);
+            ages[i] = sessionStorage.getItem('age' + i);
+        }
+        function calculateMedian() {
+            ages.sort(function(a, b) {
+                return a - b;
+            });
+            var median;
+            if (nameCount % 2 === 0) {
+                median = (ages[nameCount / 2 - 1] + ages[nameCount / 2]) / 2;
+            } else {
+                median = ages[(nameCount - 1) / 2];
+            }
+            return median;
+        }
+        function displayResults() {
+            var median = calculateMedian();
+            document.getElementById('results').innerHTML =
+                '<b>Mediana de idades:</b> ' + median + '<br> <br>' +
+                '<b>Nomes em ordem alfabetica:</b><br> <br>';
+                
+            names.sort();
+            for (var i = 0; i < nameCount; i++) {
+                document.getElementById('results').innerHTML +=
+                    names[i] + ' (' + ages[i] + ')<br> <br>';
+            }
+            document.getElementById('results').innerHTML +=
+                '<b>Menor idade:</b> ' + Math.min.apply(null, ages) + '<br> <br>' +
+                '<b>Maior idade:</b> ' + Math.max.apply(null, ages);
+        }
+    </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .results-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .results-item {
+        margin-bottom: 15px;
+    }
+
+    .results-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body onload="displayResults()">
+    <h1>Resultado</h1>
+    <div id="results"></div>
+</body>
+</html>

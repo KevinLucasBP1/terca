@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Cadastro</title>
+    <script>
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            sessionStorage.setItem('name' + nameCount, name);
+            sessionStorage.setItem('age' + nameCount, age);
+            nameCount++;
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            return false;
+        }
+    </script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+    }
+
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <form onsubmit="return submitForm()">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name">
+        <br> <br>
+        <label for="age">Idade:</label>
+        <input type="number" id="age" name="age">
+        <br> <br>
+        <button type="submit">Submit</button> <br>
+    </form>
+    <button onclick="location.href='SecondPage.html'">Next Page</button>
+    <script>
+        var nameCount = 0;
+    </script>
+</body>
+</html>
