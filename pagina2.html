@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Resultado</title>
+    <script>
+        var pessoas = JSON.parse(sessionStorage.getItem('pessoas'));
+
+        function calcularMedianaIdades() {
+            var idades = pessoas.map(function(pessoa) {
+                return pessoa.idade;
+            });
+
+            idades.sort(function(a, b) {
+                return a - b;
+            });
+
+            var qtdPessoas = idades.length;
+
+            if (qtdPessoas % 2 === 0) {
+                return (idades[qtdPessoas / 2 - 1] + idades[qtdPessoas / 2]) / 2;
+            } else {
+                return idades[(qtdPessoas - 1) / 2];
+            }
+        }
+
+        function calcularMaiorIdade() {
+            var idades = pessoas.map(function(pessoa) {
+                return pessoa.idade;
+            });
+
+            return Math.max.apply(null, idades);
+        }
+
+        function calcularMenorIdade() {
+            var idades = pessoas.map(function(pessoa) {
+                return pessoa.idade;
+            });
+
+            return Math.min.apply(null, idades);
+        }
+
+        function exibirResultados() {
+            var resultado = document.getElementById('resultado');
+            var mediana = calcularMedianaIdades();
+            var maior = calcularMaiorIdade();
+            var menor = calcularMenorIdade();
+
+            resultado.innerHTML = '<h2>Resultado:</h2>';
+            resultado.innerHTML += '<p>Mediana de idades: ' + mediana + '</p>';
+            resultado.innerHTML += '<p>Maior idade: ' + maior + '</p>';
+            resultado.innerHTML += '<p>Menor idade: ' + menor + '</p>';
+            resultado.innerHTML += '<p>Nomes em ordem alfabetica:</p>';
+            resultado.innerHTML += '<ul>';
+
+            pessoas.sort(function(a, b) {
+                return a.nome.localeCompare(b.nome);
+            });
+
+            for (var i = 0; i < pessoas.length; i++) {
+                resultado.innerHTML += '<li>' + pessoas[i].nome + ' - ' + pessoas[i].idade + '</li>';
+            }
+
+            resultado.innerHTML += '</ul>';
+        }
+    </script>
+</head>
+<body onload="exibirResultados()">
+    <h1>Resultado</h1>
+    <div id="resultado"></div>
+</body>
+</html>

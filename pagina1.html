@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Cadastro</title>
+    <script>
+        var pessoas = [];
+
+        function adicionarPessoa() {
+            var nome = document.getElementById('nome').value;
+            var idade = document.getElementById('idade').value;
+
+            
+
+            if (pessoas.length < 5) {
+                pessoas.push({nome: nome, idade: idade});
+            }
+        }
+
+        function irParaPagina2() {
+            sessionStorage.setItem('pessoas', JSON.stringify(pessoas));
+            window.location.href = 'pagina2.html';
+        }
+
+        
+    </script>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome">
+    <br> <br>
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade" name="idade">
+    <br> <br>
+    <button onclick="adicionarPessoa()">Adicionar Pessoa</button>
+    <br> <br>
+    <button onclick="irParaPagina2()">Ir para Página 2</button>
+
+
+</body>
+</html>
